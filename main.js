@@ -42,5 +42,55 @@ let random5 = num2 ?? 54;
 let random6 = num2 || "string";
 console.log(random5);
 console.log(random6);
+const products = [
+    { name: "Laptop", price: 1200 },
+    { name: "Phone", price: 800 },
+    { name: "Headphones", price: 150 },
+    { name: "Keyboard", price: 100 },
+];
+let balance = 5000;
+let nextOrderId = 1;
+const orders = [];
+function addNewProduct(product) {
+    products.push(product);
+}
+function placeOrder(productName) {
+    const selectedProduct = products.find((product) => product.name === productName);
+    // function placeOrder(productName: number) {
+    //   const selectedProduct: Item | undefined = products.find(
+    //     (product) => Number(product.name) === productName,
+    //   );
+    if (!selectedProduct) {
+        return;
+    }
+    balance += selectedProduct.price;
+    const newOrder = {
+        id: nextOrderId++,
+        product: selectedProduct,
+        status: "pending",
+    };
+    orders.push(newOrder);
+    return newOrder;
+}
+function completeOrder(orderId) {
+    const order = orders.find((order) => order.id === orderId);
+    if (!order)
+        return;
+    order.status = "completed";
+    return order;
+}
+addNewProduct({
+    name: "Monitor",
+    price: 300,
+});
+addNewProduct({
+    name: "Mouse",
+    price: 50,
+});
+placeOrder("Laptop");
+completeOrder(1);
+console.log("Products:", products);
+console.log("Balance:", balance);
+console.log("Orders:", orders);
 export {};
 //# sourceMappingURL=main.js.map

@@ -76,3 +76,86 @@ let random6 = num2 || "string";
 
 console.log(random5);
 console.log(random6);
+
+//exp
+interface Item {
+  name: string;
+  price: number;
+}
+
+interface Order {
+  id: number;
+  product: Item;
+  status: "pending" | "completed";
+}
+
+const products: Item[] = [
+  { name: "Laptop", price: 1200 },
+  { name: "Phone", price: 800 },
+  { name: "Headphones", price: 150 },
+  { name: "Keyboard", price: 100 },
+];
+
+let balance = 5000;
+let nextOrderId = 1;
+
+const orders: Order[] = [];
+
+function addNewProduct(product: Item) {
+  products.push(product);
+}
+
+function placeOrder(productName: string) {
+  const selectedProduct: Item | undefined = products.find(
+    (product) => product.name === productName,
+  );
+
+  // function placeOrder(productName: number) {
+  //   const selectedProduct: Item | undefined = products.find(
+  //     (product) => Number(product.name) === productName,
+  //   );
+
+  if (!selectedProduct) {
+    return;
+  }
+
+  balance += selectedProduct.price;
+
+  const newOrder: Order = {
+    id: nextOrderId++,
+    product: selectedProduct,
+    status: "pending",
+  };
+
+  orders.push(newOrder);
+
+  return newOrder;
+}
+
+function completeOrder(orderId: number) {
+  const order = orders.find((order) => order.id === orderId);
+
+  if (!order) return;
+
+  order.status = "completed";
+
+  return order;
+}
+
+addNewProduct({
+  name: "Monitor",
+  price: 300,
+});
+
+addNewProduct({
+  name: "Mouse",
+  price: 50,
+});
+
+placeOrder("Laptop");
+
+completeOrder(1);
+
+console.log("Products:", products);
+console.log("Balance:", balance);
+console.log("Orders:", orders);
