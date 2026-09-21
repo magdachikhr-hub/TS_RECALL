@@ -159,3 +159,71 @@ completeOrder(1);
 console.log("Products:", products);
 console.log("Balance:", balance);
 console.log("Orders:", orders);
+
+//exp2
+let username: string = "Natia";
+let age: number = 25;
+let isStudent: string = "yes";
+
+let scores: number[] = [10, 20, 30, 40];
+
+function greet(name: string): string {
+  return `Hello ${name}`;
+}
+
+console.log(greet("Natia"));
+
+//exp3
+
+interface User3 {
+  name: string;
+  surname: string;
+  id: number;
+  age: number;
+  id1: ID;
+}
+
+// type user = { name: number };
+// type user2 = { age: number };
+
+// type Product = user & user2;
+
+const person: User3 = {
+  id1: "sdsd",
+  name: "mj",
+  surname: "wee",
+  id: 49859385,
+  age: 21,
+};
+
+type product2 = {
+  name: string;
+  price: number;
+  id1: ID;
+};
+
+type ID = string | number;
+
+const pers1: User3 = {
+  id1: 4545,
+  name: "magda",
+  surname: "lee",
+  id: 33,
+  age: 21,
+};
+
+const product22: Product2 = {
+  name: "laptop",
+  price: 3333,
+};
+
+// Create a User using an interface.
+
+// Create a Product using a type.
+
+// Then create:
+
+// type ID = string | number;
+
+// Modify both User and Product so their
+// id can be either a string or number.

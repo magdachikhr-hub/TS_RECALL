@@ -92,5 +92,41 @@ completeOrder(1);
 console.log("Products:", products);
 console.log("Balance:", balance);
 console.log("Orders:", orders);
+//exp2
+let username = "Natia";
+let age = 25;
+let isStudent = "yes";
+let scores = [10, 20, 30, 40];
+function greet(name) {
+    return `Hello ${name}`;
+}
+console.log(greet("Natia"));
+// type user = { name: number };
+// type user2 = { age: number };
+// type Product = user & user2;
+const person = {
+    id1: "sdsd",
+    name: "mj",
+    surname: "wee",
+    id: 49859385,
+    age: 21,
+};
+const pers1 = {
+    id1: 4545,
+    name: "magda",
+    surname: "lee",
+    id: 33,
+    age: 21,
+};
+const product22 = {
+    name: "laptop",
+    price: 3333,
+};
 export {};
+// Create a User using an interface.
+// Create a Product using a type.
+// Then create:
+// type ID = string | number;
+// Modify both User and Product so their
+// id can be either a string or number.
 //# sourceMappingURL=main.js.map
