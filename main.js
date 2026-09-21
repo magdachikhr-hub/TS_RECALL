@@ -118,15 +118,24 @@ const pers1 = {
     id: 33,
     age: 21,
 };
-const product22 = {
+const admin1 = {
+    id: 435,
+    username: "natia",
+    age: 24,
+    email: "@",
+    password: "sgfhd",
+    role: "administative",
+};
+const user1 = {
+    id: 32854,
+    username: "natia",
+    age: 24,
+    email: "nkar@gmail.com",
+};
+const product1 = {
+    id: "sghadjdshf",
     name: "laptop",
-    price: 3333,
+    price: 234,
 };
 export {};
-// Create a User using an interface.
-// Create a Product using a type.
-// Then create:
-// type ID = string | number;
-// Modify both User and Product so their
-// id can be either a string or number.
 //# sourceMappingURL=main.js.map

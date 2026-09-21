@@ -212,10 +212,10 @@ const pers1: User3 = {
   age: 21,
 };
 
-const product22: Product2 = {
-  name: "laptop",
-  price: 3333,
-};
+// const product22: product2 = {
+//   name: "laptop",
+//   price: 3333,
+// };
 
 // Create a User using an interface.
 
@@ -227,3 +227,55 @@ const product22: Product2 = {
 
 // Modify both User and Product so their
 // id can be either a string or number.
+
+interface User {
+  id: ID;
+  username: string;
+  age: number;
+  email: string;
+}
+
+interface Admin extends User {
+  password: string;
+  role: string;
+}
+
+const admin1: Admin = {
+  id: 435,
+  username: "natia",
+  age: 24,
+  email: "@",
+  password: "sgfhd",
+  role: "administative",
+};
+
+type Student = {
+  age: number;
+};
+
+type teacher = {
+  salary: number;
+};
+
+type employe = Student & teacher;
+
+type ID = string | number;
+
+type Product = {
+  id: ID;
+  name: string;
+  price: number;
+};
+
+const user1: User = {
+  id: 32854,
+  username: "natia",
+  age: 24,
+  email: "nkar@gmail.com",
+};
+
+const product1: Product = {
+  id: "sghadjdshf",
+  name: "laptop",
+  price: 234,
+};
