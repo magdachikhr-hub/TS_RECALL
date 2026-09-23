@@ -174,49 +174,51 @@ function greet(name: string): string {
 console.log(greet("Natia"));
 
 //exp3
-
-interface User3 {
-  name: string;
-  surname: string;
-  id: number;
-  age: number;
-  id1: ID;
-}
-
 // type user = { name: number };
 // type user2 = { age: number };
 
 // type Product = user & user2;
 
-const person: User3 = {
-  id1: "sdsd",
-  name: "mj",
-  surname: "wee",
-  id: 49859385,
-  age: 21,
-};
-
-type product2 = {
-  name: string;
-  price: number;
-  id1: ID;
-};
-
 type ID = string | number;
 
-const pers1: User3 = {
-  id1: 4545,
-  name: "magda",
-  surname: "lee",
-  id: 33,
-  age: 21,
+interface MainUser {
+  name: string;
+  surname: string;
+  id: ID;
+  age: number;
+}
+
+const person: MainUser = {
+  id: "JDFNVID",
+  name: "millie",
+  surname: "grant",
+  age: 41,
 };
 
-// const product22: product2 = {
-//   name: "laptop",
-//   price: 3333,
-// };
+const SecondPerson: MainUser = {
+  id: 33,
+  name: "millie",
+  surname: "grant",
+  age: 41,
+};
 
+type OtherUser = {
+  name: string;
+  price: number;
+  id: ID;
+};
+
+const buyer: OtherUser = {
+  name: "laptop",
+  price: 3333,
+  id: 4545,
+};
+
+const SecondBuyer: OtherUser = {
+  name: "iphone",
+  price: 200,
+  id: "USER-33",
+};
 // Create a User using an interface.
 
 // Create a Product using a type.
@@ -228,19 +230,23 @@ const pers1: User3 = {
 // Modify both User and Product so their
 // id can be either a string or number.
 
-interface User {
+//other exp
+
+interface OtherUser2 {
   id: ID;
   username: string;
   age: number;
-  email: string;
+  email?: string;
 }
 
-interface Admin extends User {
+// email?: - The email property can be there, but it doesn't have to be.
+
+interface Admin extends OtherUser2 {
   password: string;
   role: string;
 }
 
-const admin1: Admin = {
+const owner: Admin = {
   id: 435,
   username: "natia",
   age: 24,
@@ -257,17 +263,17 @@ type teacher = {
   salary: number;
 };
 
-type employe = Student & teacher;
+type employee = Student & teacher;
 
-type ID = string | number;
+type ID2 = string | number;
 
 type Product = {
-  id: ID;
+  id: ID2;
   name: string;
   price: number;
 };
 
-const user1: User = {
+const persona: OtherUser2 = {
   id: 32854,
   username: "natia",
   age: 24,
@@ -279,3 +285,5 @@ const product1: Product = {
   name: "laptop",
   price: 234,
 };
+
+console.log(persona);

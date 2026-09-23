@@ -101,24 +101,29 @@ function greet(name) {
     return `Hello ${name}`;
 }
 console.log(greet("Natia"));
-// type user = { name: number };
-// type user2 = { age: number };
-// type Product = user & user2;
 const person = {
-    id1: "sdsd",
-    name: "mj",
-    surname: "wee",
-    id: 49859385,
-    age: 21,
+    id: "JDFNVID",
+    name: "millie",
+    surname: "grant",
+    age: 41,
 };
-const pers1 = {
-    id1: 4545,
-    name: "magda",
-    surname: "lee",
+const SecondPerson = {
     id: 33,
-    age: 21,
+    name: "millie",
+    surname: "grant",
+    age: 41,
 };
-const admin1 = {
+const buyer = {
+    name: "laptop",
+    price: 3333,
+    id: 4545,
+};
+const SecondBuyer = {
+    name: "iphone",
+    price: 200,
+    id: "USER-33",
+};
+const owner = {
     id: 435,
     username: "natia",
     age: 24,
@@ -126,7 +131,7 @@ const admin1 = {
     password: "sgfhd",
     role: "administative",
 };
-const user1 = {
+const persona = {
     id: 32854,
     username: "natia",
     age: 24,
@@ -137,5 +142,6 @@ const product1 = {
     name: "laptop",
     price: 234,
 };
+console.log(persona);
 export {};
 //# sourceMappingURL=main.js.map
