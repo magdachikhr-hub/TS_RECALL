@@ -1,7 +1,7 @@
 import "./App.css";
 
 function App() {
-  let text: string = "fkfgkfgm";
+  // let text: string = "fkfgkfgm";
 
   //
 
@@ -75,7 +75,7 @@ function App() {
 
     private checkPasswordForName() {
       if (this.password.includes(this.name)) {
-        //alert("dont use your name");
+        // alert("dont use your name");
       } else {
         // alert("this password in valid");
       }
@@ -101,6 +101,73 @@ function App() {
 
   const admin = new Admin("magdu", "magdamagda");
   console.log(admin.deletePost());
+
+  ///
+
+  class Character {
+    private health: number;
+    protected level: number;
+    public name: string;
+
+    constructor(name: string, health: number, level: number) {
+      this.name = name;
+      this.health = health;
+      this.level = level;
+    }
+
+    public takeDamage(amount: number): void {
+      this.health -= amount;
+      if (this.health <= 0) {
+        console.log(`${this.name} has fallen!`);
+      }
+    }
+
+    public getHealth(): number {
+      return this.health; // 🐛 something's wrong here
+    }
+
+    protected levelUp(): void {
+      this.level++;
+      console.log(`${this.name} is now level ${this.level}!`);
+    }
+  }
+
+  class Warrior extends Character {
+    private rage: number = 0;
+
+    constructor(name: string, health: number, level: number) {
+      // 🐛 something's missing here
+      super(name, health, level);
+      this.rage = 0;
+    }
+
+    public gainRage(amount: number): void {
+      this.rage += amount;
+      if (this.rage >= 100) {
+        this.levelUp();
+        this.rage = 0;
+      }
+    }
+
+    //  public getRage(): number {
+    //   return this.rage;
+    // }
+
+    public showStatus(): void {
+      // 🐛 one of these two lines is not like the other
+      console.log(`${this.name} - Level ${this.level} - Rage: ${this.rage}`);
+      console.log(`Health: ${this.getHealth()}`);
+    }
+  }
+
+  const hero = new Warrior("Aria", 100, 1);
+  hero.takeDamage(30);
+  hero.gainRage(120);
+  hero.showStatus();
+
+  // 🐛 two more bugs are down here — try running these lines
+  console.log(hero.getHealth());
+  console.log(hero.gainRage(1));
 
   ///
 
