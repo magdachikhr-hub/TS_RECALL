@@ -228,7 +228,7 @@ function App() {
   }
 
   class Character1 implements Charater2 {
-    name: string;
+    readonly name: string;
     #score: number;
     #hearts: number;
     skin: string;
@@ -268,7 +268,7 @@ function App() {
     };
     addSkills = (skill: string) => {
       this.skills.push(skill);
-
+      this.addScore();
       return this.skills;
     };
   }
@@ -277,7 +277,12 @@ function App() {
     "speed",
     "push",
   ]);
+  //spiderman.name = "t55tt";
   console.log(spiderman);
+  spiderman.getScore();
+  spiderman.addScore();
+  spiderman.addSkills("web shoot");
+  spiderman.changeSkin("goblin.png");
 
   return <>app</>;
 }
