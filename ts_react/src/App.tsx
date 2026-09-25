@@ -171,6 +171,48 @@ function App() {
 
   ///
 
+  // 1. ბანკის ანგარიში (საბაზისო — encapsulation)
+
+  // შექმენი BankAccount კლასი:
+
+  // private balance: number
+  // public owner: string
+  // მეთოდები: deposit(amount), withdraw(amount), getBalance()
+  // წესი: withdraw-მა არ უნდა დაუშვას balance-ის უარყოფით რიცხვად ქცევა — თუ თანხა არასაკმარისია, დაბეჭდე შეტყობინება და არაფერი შეცვალო.
+  // ცდა: სცადე პირდაპირ account.balance = 1000000 — რატომ ვერ მუშაობს? რატომაა ეს კარგი?
+
+  class BankAccount {
+    private balance: number;
+    public owner: string;
+    constructor(owner1: string, initialBalance: number) {
+      this.owner = owner1;
+      this.balance = initialBalance;
+    }
+
+    withdraw(amount: number): void {
+      if (amount < 0) {
+        console.log("not enough money");
+      } else {
+        console.log(amount);
+      }
+    }
+
+    getBalance(amount: number): number {
+      if (amount > 0) {
+        console.log("here is your money");
+      } else {
+        console.log("not valid");
+      }
+
+      return this.balance;
+    }
+  }
+
+  const account = new BankAccount("Magda", 0);
+  account.withdraw(-333);
+  account.withdraw(333);
+  account.getBalance(22);
+  account.getBalance(-2122);
   return <>app</>;
 }
 
