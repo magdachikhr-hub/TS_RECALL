@@ -213,6 +213,72 @@ function App() {
   account.withdraw(333);
   account.getBalance(22);
   account.getBalance(-2122);
+  ////
+
+  interface Charater2 {
+    readonly name: string;
+    skin: string;
+    skills: Array<string>;
+
+    getScore: () => number;
+    addScore: () => number;
+    decreaseScore: () => number;
+    changeSkin: (newSkin: string) => string;
+    addSkills: (skill: string) => Array<string>;
+  }
+
+  class Character1 implements Charater2 {
+    name: string;
+    #score: number;
+    #hearts: number;
+    skin: string;
+    skills: Array<string>;
+
+    constructor(
+      name: string,
+      score: number,
+      hearts: number,
+      skin: string,
+      skills: Array<string>,
+    ) {
+      this.name = name;
+      this.#score = score;
+      this.#hearts = hearts;
+      this.skin = skin;
+      this.skills = skills;
+    }
+
+    getScore = () => {
+      console.log(`this is score ${this.#score}`);
+      return this.#score;
+    };
+    addScore = () => {
+      console.log((this.#score = this.#score + 1));
+
+      return (this.#score += 1);
+    };
+    decreaseScore = () => {
+      console.log((this.#score = this.#score - 1));
+      return (this.#score -= 1);
+    };
+    changeSkin = (newSkin: string) => {
+      this.skin = newSkin;
+
+      return this.skin;
+    };
+    addSkills = (skill: string) => {
+      this.skills.push(skill);
+
+      return this.skills;
+    };
+  }
+
+  const spiderman = new Character1("spiderman", 0, 100, "spider.png", [
+    "speed",
+    "push",
+  ]);
+  console.log(spiderman);
+
   return <>app</>;
 }
 
