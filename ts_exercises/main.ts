@@ -137,3 +137,49 @@ const books: TBook[] = [
 books.forEach((books) => {
   console.log(books.title, books.price);
 });
+
+//4
+
+class Member {
+  public firstName: string;
+  public lastName: string;
+  private email: string;
+  private age: number;
+
+  constructor(
+    firstName1: string,
+    lastName1: string,
+    email1: string,
+    age1: number,
+  ) {
+    this.firstName = firstName1;
+    this.lastName = lastName1;
+    this.email = email1;
+    this.age = age1;
+  }
+
+  getProfile(): string {
+    return `Name: ${this.firstName} Surname: ${this.lastName}, Email: ${this.email}, Age: ${this.age}`;
+  }
+}
+
+const member = new Member("magda", "chikh", "example@.com", 21);
+console.log(member);
+
+console.log(member.firstName);
+console.log(member.lastName);
+//console.log(member.age);
+
+class PremiumMember extends Member {
+  getBorrowedBooks(): string[] {
+    return ["cats", "dogs", "snow white", "elsa", "spiderman"];
+  }
+}
+
+const member2 = new PremiumMember("mary", "maryson", "example@.com", 24);
+console.log(member2);
+
+console.log(member2.getBorrowedBooks());
+
+console.log(member.getProfile());
+console.log(member2.getProfile());

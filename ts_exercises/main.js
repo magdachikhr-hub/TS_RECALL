@@ -97,5 +97,36 @@ const books = [
 books.forEach((books) => {
     console.log(books.title, books.price);
 });
+//4
+class Member {
+    firstName;
+    lastName;
+    email;
+    age;
+    constructor(firstName1, lastName1, email1, age1) {
+        this.firstName = firstName1;
+        this.lastName = lastName1;
+        this.email = email1;
+        this.age = age1;
+    }
+    getProfile() {
+        return `Name: ${this.firstName} Surname: ${this.lastName}, Email: ${this.email}, Age: ${this.age}`;
+    }
+}
+const member = new Member("magda", "chikh", "example@.com", 21);
+console.log(member);
+console.log(member.firstName);
+console.log(member.lastName);
+//console.log(member.age);
+class PremiumMember extends Member {
+    getBorrowedBooks() {
+        return ["cats", "dogs", "snow white", "elsa", "spiderman"];
+    }
+}
+const member2 = new PremiumMember("mary", "maryson", "example@.com", 24);
+console.log(member2);
+console.log(member2.getBorrowedBooks());
+console.log(member.getProfile());
+console.log(member2.getProfile());
 export {};
 //# sourceMappingURL=main.js.map
