@@ -21,7 +21,7 @@ function getBookInfo(
 
 console.log(getBookInfo(bookTitle, datePublished, libraryStatus, pageNumbers));
 
-function getBookSize(numberOfPages: number) {
+function getBookSize(numberOfPages: number): string {
   if (numberOfPages < 200) {
     return "short";
   } else if (numberOfPages <= 500) {
@@ -48,8 +48,6 @@ for (let i = 0; i < authors.length; i++) {
 }
 
 //2.5 — ციკლი და ფილტრაცია
-//შექმენით number[] მასივი 6 წიგნის შეფასებით და for...of ციკლით გამოთვალეთ
-//საშუალო შეფასება.
 
 const numbers: number[] = [9, 9, 7, 3, 10, 5];
 
@@ -63,7 +61,7 @@ const average: number = total / numbers.length;
 
 console.log(average);
 
-const filteredNums: number[] = numbers.filter((num) => num! < 6);
+const filteredNums: number[] = numbers.filter((num) => num < 6);
 
 console.log(filteredNums);
 
