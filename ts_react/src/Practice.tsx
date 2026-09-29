@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { supabase } from "./supabase/supabaseClient";
-
+import Loading from "./Loading";
 interface PersonType {
   id?: number;
   score: number;
@@ -59,7 +59,7 @@ function Practice() {
 
   return (
     <>
-      {loading && <p>please wait</p>}
+      {loading && <Loading></Loading>}
       {people &&
         people.map((person) => (
           <div

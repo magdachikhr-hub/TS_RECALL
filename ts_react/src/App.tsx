@@ -1,5 +1,6 @@
 import "./App.css";
 import Practice from "./Practice";
+import Loading from "./Loading";
 function App() {
   // // let text: string = "fkfgkfgm";
 
