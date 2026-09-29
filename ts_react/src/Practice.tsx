@@ -18,9 +18,13 @@ function Practice() {
     setloading(true);
     async function getPerson() {
       try {
-        const { data } = await supabase.from("person").select("*");
-
+        const response = await supabase.from("person").select("*");
+        const data = response.data;
         console.log(data);
+
+        if (!data.ok) {
+        }
+
         if (data) {
           setPerson(data);
         }
@@ -39,8 +43,11 @@ function Practice() {
       {loading && <p>please wait</p>}
       {people &&
         people.map((person) => (
-          <div style={{ border: "1px solid black", width: "100px" }}>
-            <h3 key={person.id}>{person.username}</h3>
+          <div
+            key={person.id}
+            style={{ border: "1px solid black", width: "100px" }}
+          >
+            <h3>{person.username}</h3>
             <span>score: {person.score}</span>
           </div>
         ))}
