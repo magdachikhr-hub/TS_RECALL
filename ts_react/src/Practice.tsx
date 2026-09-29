@@ -9,9 +9,13 @@ interface PersonType {
 
 function Practice() {
   const [people, setPerson] = useState<PersonType[]>();
+  //const [age, setAge] = useState<number>();
+  const [loading, setloading] = useState(true);
 
+  //setAge(324);
   // console.log(supabase);
   useEffect(() => {
+    setloading(true);
     async function getPerson() {
       try {
         const { data } = await supabase.from("person").select("*");
@@ -22,6 +26,8 @@ function Practice() {
         }
       } catch (error) {
         console.log(error);
+      } finally {
+        setloading(false);
       }
     }
 
@@ -30,6 +36,7 @@ function Practice() {
 
   return (
     <>
+      {loading && <p>please wait</p>}
       {people &&
         people.map((person) => (
           <div style={{ border: "1px solid black", width: "100px" }}>
