@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { supabase } from "./supabase/supabaseClient";
 
 interface PersonType {
-  id: number;
+  id?: number;
   score: number;
   username: string;
 }
@@ -37,6 +37,24 @@ function Practice() {
     }
 
     getPerson();
+  }, []);
+
+  useEffect(() => {
+    async function sendPerson() {
+      try {
+        const { data, error } = await supabase
+          .from("person")
+          .insert({
+            score: 15,
+            username: "madu",
+          })
+          .select();
+        console.log(data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    sendPerson();
   }, []);
 
   return (
