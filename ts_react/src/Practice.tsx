@@ -18,11 +18,12 @@ function Practice() {
     setloading(true);
     async function getPerson() {
       try {
-        const response = await supabase.from("person").select("*");
-        const data = response.data;
+        const { data, error } = await supabase.from("person").select("*");
+
         console.log(data);
 
-        if (!data.ok) {
+        if (error) {
+          throw new Error(error.message);
         }
 
         if (data) {
