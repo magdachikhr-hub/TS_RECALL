@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { supabase } from "./supabase/supabaseClient";
 import Loading from "./Loading";
+import { useForm } from "react-hook-form";
+
 interface PersonType {
   id?: number;
   score: number;
@@ -13,7 +15,18 @@ function Practice() {
   const [loading, setloading] = useState(true);
 
   //setAge(324);
+
   // console.log(supabase);
+
+  const { register, handleSubmit, reset } = useForm<PersonType>();
+
+  const SubmitFunction = (d) => {
+    console.log(d);
+    reset();
+
+    sendPerson(d);
+  };
+
   useEffect(() => {
     setloading(true);
     async function getPerson() {
@@ -39,35 +52,35 @@ function Practice() {
     getPerson();
   }, []);
 
-  async function sendPerson() {
+  async function sendPerson(d) {
     try {
-      const { data, error } = await supabase
-        .from("person")
-        .insert({
-          score: 15,
-          username: "madu",
-        })
-        .select();
+      const { data, error } = await supabase.from("person").insert(d).select();
       console.log(data);
     } catch (err) {
       console.log(err);
     }
   }
 
-  const handlePost = () => {
-    sendPerson();
-  };
-
   return (
     <>
-      <form onSubmit={handlePost()}>
+      <form onSubmit={handleSubmit(SubmitFunction)}>
         <div>
           <label htmlFor="name">username</label>
-          <input type="text" id="name" className="border border-black" />
+          <input
+            type="text"
+            id="name"
+            className="border border-black"
+            {...register("username")}
+          />
         </div>
         <div>
           <label htmlFor="score">score</label>
-          <input type="number" id="score" className="border border-black" />
+          <input
+            type="number"
+            id="score"
+            className="border border-black"
+            {...register("score")}
+          />
         </div>
         <button type="submit" className="border border-black">
           submit
