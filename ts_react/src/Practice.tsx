@@ -11,7 +11,7 @@ interface PersonType {
 }
 
 function Practice() {
-  const [people, setPerson] = useState<PersonType[]>();
+  const [people, setPerson] = useState<PersonType[]>([]);
   //const [age, setAge] = useState<number>();
   const [loading, setloading] = useState(true);
 
@@ -70,6 +70,22 @@ function Practice() {
     }
   }
 
+  async function deletePerson(id: number | undefined) {
+    try {
+      const { data, error } = await supabase
+        .from("person")
+        .delete()
+        .eq("id", id);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  const handleDelete = (id) => {
+    deletePerson(id);
+    getPerson();
+  };
+
   return (
     <>
       {error && (
@@ -105,11 +121,24 @@ function Practice() {
       {people &&
         people.map((person) => (
           <div
-            key={person.id}
-            style={{ border: "1px solid black", width: "100px" }}
+            style={{
+              border: "1px solid black",
+              width: "110px",
+              display: "flex",
+              justifyContent: "space-between",
+              padding: "5px",
+            }}
           >
-            <h3>{person.username}</h3>
-            <span>score: {person.score}</span>
+            <button
+              onClick={() => handleDelete(person.id)}
+              style={{ order: 2 }}
+            >
+              X
+            </button>
+            <div style={{ order: 1 }} key={person.id}>
+              <h3>{person.username}</h3>
+              <span>score: {person.score}</span>
+            </div>
           </div>
         ))}
     </>
