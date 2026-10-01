@@ -39,26 +39,41 @@ function Practice() {
     getPerson();
   }, []);
 
-  useEffect(() => {
-    async function sendPerson() {
-      try {
-        const { data, error } = await supabase
-          .from("person")
-          .insert({
-            score: 15,
-            username: "madu",
-          })
-          .select();
-        console.log(data);
-      } catch (err) {
-        console.log(err);
-      }
+  async function sendPerson() {
+    try {
+      const { data, error } = await supabase
+        .from("person")
+        .insert({
+          score: 15,
+          username: "madu",
+        })
+        .select();
+      console.log(data);
+    } catch (err) {
+      console.log(err);
     }
+  }
+
+  const handlePost = () => {
     sendPerson();
-  }, []);
+  };
 
   return (
     <>
+      <form onSubmit={handlePost()}>
+        <div>
+          <label htmlFor="name">username</label>
+          <input type="text" id="name" className="border border-black" />
+        </div>
+        <div>
+          <label htmlFor="score">score</label>
+          <input type="number" id="score" className="border border-black" />
+        </div>
+        <button type="submit" className="border border-black">
+          submit
+        </button>
+      </form>
+
       {loading && <Loading></Loading>}
       {people &&
         people.map((person) => (
@@ -75,3 +90,5 @@ function Practice() {
 }
 
 export default Practice;
+
+//get and post done
