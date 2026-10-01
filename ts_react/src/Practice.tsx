@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { supabase } from "./supabase/supabaseClient";
 import Loading from "./Loading";
 import { useForm } from "react-hook-form";
+import { PostgrestError } from "@supabase/supabase-js";
 
 interface PersonType {
   id?: number;
@@ -18,43 +19,51 @@ function Practice() {
 
   // console.log(supabase);
 
+  const [error, setError] = useState<PostgrestError | undefined>();
+
   const { register, handleSubmit, reset } = useForm<PersonType>();
 
-  const SubmitFunction = (d) => {
+  async function getPerson() {
+    try {
+      const { data, error } = await supabase.from("person").select("*");
+
+      console.log(data);
+
+      if (error) {
+        setError(error);
+      }
+
+      if (data) {
+        setPerson(data);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setloading(false);
+    }
+  }
+
+  const SubmitFunction = (d: PersonType) => {
     console.log(d);
     reset();
 
     sendPerson(d);
+    getPerson();
   };
 
   useEffect(() => {
     setloading(true);
-    async function getPerson() {
-      try {
-        const { data, error } = await supabase.from("person").select("*");
-
-        console.log(data);
-
-        if (error) {
-          throw new Error(error.message);
-        }
-
-        if (data) {
-          setPerson(data);
-        }
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setloading(false);
-      }
-    }
 
     getPerson();
   }, []);
 
-  async function sendPerson(d) {
+  async function sendPerson(d: PersonType) {
     try {
       const { data, error } = await supabase.from("person").insert(d).select();
+      if (error) {
+        setError(error);
+      }
+
       console.log(data);
     } catch (err) {
       console.log(err);
@@ -63,6 +72,11 @@ function Practice() {
 
   return (
     <>
+      {error && (
+        <div className="absolute top-0 left-0 bg-white h-screen">
+          <p>{error.message}</p>
+        </div>
+      )}
       <form onSubmit={handleSubmit(SubmitFunction)}>
         <div>
           <label htmlFor="name">username</label>
