@@ -130,7 +130,11 @@ function Practice() {
             }}
           >
             <button
-              onClick={() => handleDelete(person.id)}
+              onClick={() => {
+                //  deletePerson(person.id);
+                // getPerson();
+                //window.location.href = "/";
+              }}
               style={{ order: 2 }}
             >
               X
