@@ -62,11 +62,12 @@ function Practice() {
       const { data, error } = await supabase.from("person").insert(d).select();
       if (error) {
         setError(error);
+        throw new Error("there is something wrong");
       }
-
       console.log(data);
     } catch (err) {
       console.log(err);
+      // setError((error as Error).message);
     }
   }
 
