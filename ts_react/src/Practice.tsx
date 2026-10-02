@@ -72,19 +72,11 @@ function Practice() {
 
   async function deletePerson(id: number | undefined) {
     try {
-      const { data, error } = await supabase
-        .from("person")
-        .delete()
-        .eq("id", id);
-      console.log(data);
+      const { error } = await supabase.from("person").delete().eq("id", id);
     } catch (error) {
       console.log(error);
     }
   }
-  const handleDelete = (id) => {
-    deletePerson(id);
-    getPerson();
-  };
 
   return (
     <>
@@ -130,10 +122,9 @@ function Practice() {
             }}
           >
             <button
-              onClick={() => {
-                //  deletePerson(person.id);
-                // getPerson();
-                //window.location.href = "/";
+              onClick={async () => {
+                await deletePerson(person.id);
+                await getPerson();
               }}
               style={{ order: 2 }}
             >
