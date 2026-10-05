@@ -46,9 +46,8 @@ function Practice() {
   const SubmitFunction = (d: PersonType) => {
     console.log(d);
     reset();
-
+    setPerson((prev) => [...prev, d]);
     sendPerson(d);
-    getPerson();
   };
 
   useEffect(() => {
