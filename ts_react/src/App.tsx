@@ -1,6 +1,7 @@
 import "./App.css";
 import Practice from "./Practice";
 import Loading from "./Loading";
+import Child from "../Child";
 function App() {
   // // let text: string = "fkfgkfgm";
 
@@ -288,6 +289,7 @@ function App() {
   return (
     <>
       <Practice></Practice>
+      <Child></Child>
     </>
   );
 }
