@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { useState } from "react";
-
+import GrandChild from "./grandchild";
 function Child() {
   const [count, setCount] = useState(0);
   const [users, setUsers] = useState([
@@ -26,6 +26,7 @@ function Child() {
 
   return (
     <>
+      <GrandChild></GrandChild>
       <button onClick={handleClick}>add +1</button>
       <h1>{count}</h1>
       {students.map((student) => (
@@ -37,5 +38,7 @@ function Child() {
     </>
   );
 }
+
+//usecontext/
 
 export default Child;
