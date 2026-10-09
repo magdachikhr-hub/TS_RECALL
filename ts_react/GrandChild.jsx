@@ -6,7 +6,7 @@ function GrandChild() {
   const [domains, setDomains] = useState([]);
   const [filteredDomains, setFilteredDomains] = useState([]);
   const BASE_URL = "https://catchdoms.com/api";
-
+  const [count, setCount] = useState(0);
   useEffect(() => {
     async function getDomains() {
       try {
@@ -29,6 +29,10 @@ function GrandChild() {
     getDomains();
   }, []);
 
+  const handleCount = () => {
+    setCount((prev) => prev + 1);
+  };
+
   useMemo(() => {
     setFilteredDomains(domains.filter((d) => d.bids_count > 20));
   }, [domains]);
@@ -37,6 +41,7 @@ function GrandChild() {
 
   return (
     <>
+      <button onClick={handleCount}>add +</button>
       {filteredDomains.map((domain) => (
         <div key={domain.id}>
           <h1>{domain.name}</h1>
