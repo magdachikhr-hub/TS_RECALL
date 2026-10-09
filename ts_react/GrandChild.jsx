@@ -4,7 +4,7 @@ import { useContext, useMemo, useState, useEffect } from "react";
 function GrandChild() {
   // const name = useContext(NameContext)
   const [domains, setDomains] = useState([]);
-
+  const [filteredDomains, setFilteredDomains] = useState([]);
   const BASE_URL = "https://catchdoms.com/api";
 
   useEffect(() => {
@@ -29,15 +29,22 @@ function GrandChild() {
     getDomains();
   }, []);
 
-  let filteredArray = [];
-
   useMemo(() => {
-    filteredArray = domains.filter((d) => d.bids_count > 20);
+    setFilteredDomains(domains.filter((d) => d.bids_count > 20));
   }, [domains]);
 
-  console.log(filteredArray);
+  console.log(filteredDomains);
 
-  return <></>;
+  return (
+    <>
+      {filteredDomains.map((domain) => (
+        <div key={domain.id}>
+          <h1>{domain.name}</h1>
+          <p>{domain.purchase_url}</p>
+        </div>
+      ))}
+    </>
+  );
 }
 
 export default GrandChild;
