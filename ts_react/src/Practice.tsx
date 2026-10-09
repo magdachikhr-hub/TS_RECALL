@@ -73,6 +73,10 @@ function Practice() {
   async function deletePerson(id: number | undefined) {
     try {
       const { error } = await supabase.from("person").delete().eq("id", id);
+      if (error) {
+        setError(error);
+        throw new Error("there is something wrong");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -113,6 +117,7 @@ function Practice() {
       {people &&
         people.map((person) => (
           <div
+            key={person.id}
             style={{
               border: "1px solid black",
               width: "110px",
