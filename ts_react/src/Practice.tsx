@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
+import { set, useForm, type ErrorMessageProps } from "react-hook-form";
 import { supabase } from "./supabase/supabaseClient";
-import Loading from "./Loading";
-import { useForm } from "react-hook-form";
 import { PostgrestError } from "@supabase/supabase-js";
 
 interface PersonType {
@@ -12,71 +11,65 @@ interface PersonType {
 
 function Practice() {
   const [people, setPerson] = useState<PersonType[]>([]);
-  //const [age, setAge] = useState<number>();
-  const [loading, setloading] = useState(true);
-
-  //setAge(324);
-
-  // console.log(supabase);
-
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<PostgrestError | undefined>();
 
   const { register, handleSubmit, reset } = useForm<PersonType>();
 
   async function getPerson() {
+    setLoading(true);
     try {
       const { data, error } = await supabase.from("person").select("*");
-
-      console.log(data);
 
       if (error) {
         setError(error);
       }
-
       if (data) {
         setPerson(data);
       }
     } catch (error) {
       console.log(error);
     } finally {
-      setloading(false);
+      setLoading(false);
     }
   }
 
-  const SubmitFunction = (d: PersonType) => {
-    console.log(d);
+  const SubmitFunction = async (data: PersonType) => {
+    console.log(data);
+
     reset();
-    setPerson((prev) => [...prev, d]);
-    sendPerson(d);
+    await sendPerson(data);
+    await getPerson();
   };
 
   useEffect(() => {
-    setloading(true);
+    setLoading(true);
 
     getPerson();
   }, []);
 
   async function sendPerson(d: PersonType) {
+    setLoading(true);
+    console.log(d);
     try {
       const { data, error } = await supabase.from("person").insert(d).select();
       if (error) {
-        setError(error);
-        throw new Error("there is something wrong");
+        throw new Error(
+          "We couldn't complete that. Please try again in a moment.",
+        );
       }
       console.log(data);
-    } catch (err) {
-      console.log(err);
-      // setError((error as Error).message);
+    } catch (error) {
+      console.log(error);
+      setError(error as PostgrestError);
+    } finally {
+      setLoading(false);
     }
   }
 
   async function deletePerson(id: number | undefined) {
     try {
       const { error } = await supabase.from("person").delete().eq("id", id);
-      if (error) {
-        setError(error);
-        throw new Error("there is something wrong");
-      }
     } catch (error) {
       console.log(error);
     }
@@ -85,45 +78,44 @@ function Practice() {
   return (
     <>
       {error && (
-        <div className="absolute top-0 left-0 bg-white h-screen">
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            backgroundColor: "white",
+            height: "100vh",
+          }}
+        >
           <p>{error.message}</p>
         </div>
       )}
       <form onSubmit={handleSubmit(SubmitFunction)}>
         <div>
           <label htmlFor="name">username</label>
-          <input
-            type="text"
-            id="name"
-            className="border border-black"
-            {...register("username")}
-          />
+          <input type="text" id="name" {...register("username")} />
         </div>
         <div>
-          <label htmlFor="score">score</label>
-          <input
-            type="number"
-            id="score"
-            className="border border-black"
-            {...register("score")}
-          />
+          <label htmlFor="score">score:</label>
+          <input type="number" {...register("score")} />
         </div>
-        <button type="submit" className="border border-black">
+        <button disabled={loading} type="submit">
           submit
         </button>
       </form>
 
-      {loading && <Loading></Loading>}
+      {loading && <p>please wait ...</p>}
+
       {people &&
         people.map((person) => (
           <div
             key={person.id}
             style={{
               border: "1px solid black",
-              width: "110px",
+              padding: "10px",
+              gap: "10px",
+              width: "120px",
               display: "flex",
-              justifyContent: "space-between",
-              padding: "5px",
             }}
           >
             <button
@@ -131,12 +123,11 @@ function Practice() {
                 await deletePerson(person.id);
                 await getPerson();
               }}
-              style={{ order: 2 }}
             >
-              X
+              x
             </button>
-            <div style={{ order: 1 }} key={person.id}>
-              <h3>{person.username}</h3>
+            <div>
+              <h3 style={{ marginTop: "5px" }}>{person.username}</h3>
               <span>score: {person.score}</span>
             </div>
           </div>
@@ -146,5 +137,3 @@ function Practice() {
 }
 
 export default Practice;
-
-//get and post done
