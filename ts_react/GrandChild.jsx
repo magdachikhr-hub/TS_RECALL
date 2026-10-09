@@ -1,9 +1,8 @@
 import React from "react";
-import { useMemo } from "react";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useContext, useMemo, useState, useEffect } from "react";
 
 function GrandChild() {
+  // const name = useContext(NameContext)
   const [domains, setDomains] = useState([]);
 
   const BASE_URL = "https://catchdoms.com/api";
@@ -14,31 +13,31 @@ function GrandChild() {
         const response = await fetch(`${BASE_URL}/domains`, {
           headers: {
             Authorization:
-              "Bearer 624|KFWktEFUrWiDwVy9bla6BJyMFn2cpIoMp5ahkGfgf62ae758",
+              "Bearer 625|F346OSBOQ714GNZ8IinxhI6AugElDdIVY2waxxeVbd46f5b1",
             Accept: "application/json",
           },
         });
         const data = await response.json();
-        console.log(data.data);
+
         setDomains(data.data);
+        // console.log(data.data)
       } catch (error) {
         console.log(error);
       }
     }
+
     getDomains();
   }, []);
 
+  let filteredArray = [];
+
   useMemo(() => {
-    setDomains((doms) => {
-      return doms?.filter((d) => {
-        d.bids_count > 50;
-      });
-    });
+    filteredArray = domains.filter((d) => d.bids_count > 20);
   }, [domains]);
 
-  console.log(domains);
+  console.log(filteredArray);
 
-  return <div>GrandChild</div>;
+  return <></>;
 }
 
 export default GrandChild;
