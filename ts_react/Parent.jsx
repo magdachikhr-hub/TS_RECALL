@@ -7,6 +7,7 @@ function Parent() {
 
   useEffect(() => {
     localStorage.setItem("theme", theme);
+    document.documentElement.classList.toggle("dark", theme === "dark");
   }, [theme]);
 
   const handleModeChange = () => {
