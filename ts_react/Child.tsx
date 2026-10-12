@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { useState } from "react";
-import GrandChild from "./grandchild";
+import GrandChild from "./GrandChild";
 function Child() {
   const [count, setCount] = useState(0);
   const [users, setUsers] = useState([
@@ -9,19 +9,16 @@ function Child() {
     { name: "lado", age: 25, grade: 90 },
   ]);
 
-  const [students, setStudents] = useState([]);
+  // const [students, setStudents] = useState([]);
 
   const handleClick = () => {
     setCount((c: number): number => c + 1);
   };
 
-  useMemo(() => {
-    function filterUsers() {
-      const filteredArr = users.filter((u) => u.grade > 120);
-      console.log(filteredArr);
-      setStudents(filteredArr);
-    }
-    filterUsers();
+  const students = useMemo(() => {
+    console.log("hi1");
+
+    return users.filter((u) => u.grade > 120);
   }, [users]);
 
   return (
