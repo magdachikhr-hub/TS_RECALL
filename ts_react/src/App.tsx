@@ -2,6 +2,7 @@ import "./App.css";
 import Practice from "./Practice";
 import Loading from "./Loading";
 import Child from "../Child";
+import Parent from "../Parent";
 function App() {
   // // let text: string = "fkfgkfgm";
 
@@ -288,8 +289,9 @@ function App() {
 
   return (
     <>
+      {/* <Child></Child> */}
+      <Parent></Parent>
       <Practice></Practice>
-      <Child></Child>
     </>
   );
 }
