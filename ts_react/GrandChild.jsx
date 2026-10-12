@@ -4,9 +4,11 @@ import { useContext, useMemo, useState, useEffect } from "react";
 function GrandChild() {
   // const name = useContext(NameContext)
   const [domains, setDomains] = useState([]);
-  const [filteredDomains, setFilteredDomains] = useState([]);
-  const BASE_URL = "https://catchdoms.com/api";
+  // const [filteredDomains, setFilteredDomains] = useState([]);
   const [count, setCount] = useState(0);
+
+  const BASE_URL = "https://catchdoms.com/api";
+
   useEffect(() => {
     async function getDomains() {
       try {
@@ -33,16 +35,18 @@ function GrandChild() {
     setCount((prev) => prev + 1);
   };
 
-  useMemo(() => {
-    setFilteredDomains(domains.filter((d) => d.bids_count > 20));
+  const filteredArray = useMemo(() => {
+    console.log("hi");
+    return domains.filter((d) => d.bids_count > 20);
   }, [domains]);
 
-  console.log(filteredDomains);
-
+  //console.log(filteredDomains);
+  console.log(count);
   return (
     <>
-      <button onClick={handleCount}>add +</button>
-      {filteredDomains.map((domain) => (
+      <button onClick={handleCount}>add {count}</button>
+
+      {filteredArray.map((domain) => (
         <div key={domain.id}>
           <h1>{domain.name}</h1>
           <p>{domain.purchase_url}</p>
