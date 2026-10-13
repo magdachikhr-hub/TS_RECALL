@@ -3,6 +3,7 @@ import Practice from "./Practice";
 import Loading from "./Loading";
 import Child from "../Child";
 import Parent from "../Parent";
+import Test from "./Test";
 function App() {
   // // let text: string = "fkfgkfgm";
 
@@ -290,6 +291,7 @@ function App() {
   return (
     <>
       {/* <Child></Child> */}
+      <Test></Test>
       <Parent></Parent>
       <Practice></Practice>
     </>

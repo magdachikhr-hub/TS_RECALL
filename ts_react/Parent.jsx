@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Child from "./Child";
 import { ThemeContext } from "./src/context/ThemeContext";
-
+//
+import { useDispatch } from "react-redux";
+import { increment } from "./src/redux/counter";
+import { decrement } from "./src/redux/counter";
+import store from "./src/redux/store";
+//
 function Parent() {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
@@ -21,12 +26,13 @@ function Parent() {
     name: "mj",
     age: "100",
   };
-  //   console.log(user.name);
+
+  console.log(store.getState());
+
   return (
     <>
       <ThemeContext.Provider value={{ theme, handleModeChange }}>
         <Child></Child>
-        {/* <Child user={user}></Child> */}
       </ThemeContext.Provider>
     </>
   );
