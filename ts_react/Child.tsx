@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { useState } from "react";
 import GrandChild from "./GrandChild";
 import PracticeContext from "./PracticeContext";
-import Parent from "./Parent";
+//import Parent from "./Parent";
 function Child({ user }: any) {
   const [count, setCount] = useState(0);
   const [users, setUsers] = useState([

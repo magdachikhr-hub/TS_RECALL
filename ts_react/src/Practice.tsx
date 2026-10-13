@@ -90,16 +90,33 @@ function Practice() {
           <p>{error.message}</p>
         </div>
       )}
-      <form onSubmit={handleSubmit(SubmitFunction)}>
+      <form
+        onSubmit={handleSubmit(SubmitFunction)}
+        className="flex flex-col gap-[8px]"
+      >
         <div>
           <label htmlFor="name">username</label>
-          <input type="text" id="name" {...register("username")} />
+          <input
+            className="outline rounded"
+            type="text"
+            id="name"
+            {...register("username")}
+          />
         </div>
         <div>
           <label htmlFor="score">score:</label>
-          <input type="number" {...register("score")} />
+          <input
+            className="outline rounded"
+            type="number"
+            {...register("score")}
+          />
         </div>
-        <button disabled={loading} type="submit">
+
+        <button
+          className="w-[70px] h-[30px] border"
+          disabled={loading}
+          type="submit"
+        >
           submit
         </button>
       </form>
