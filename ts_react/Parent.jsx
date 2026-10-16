@@ -7,7 +7,7 @@ import { increment } from "./src/redux/counter";
 import { decrement } from "./src/redux/counter";
 import store from "./src/redux/store";
 //
-function Parent() {
+function Parent({ name }) {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
   useEffect(() => {

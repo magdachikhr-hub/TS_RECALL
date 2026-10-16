@@ -1,0 +1,19 @@
+import { memo } from "react";
+
+interface Property {
+  isWorking: Boolean;
+  func: (a: number, b: number) => number;
+}
+
+const Functional = memo((props: Property) => {
+  console.log("functinal is running");
+  const { isWorking, func } = props;
+  console.log(isWorking);
+  console.log(func);
+  func(12, 13);
+
+  console.log(props);
+  return <div>Functional</div>;
+});
+
+export default Functional;

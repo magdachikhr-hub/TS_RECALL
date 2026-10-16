@@ -1,9 +1,11 @@
 import "./App.css";
 import Practice from "./Practice";
-import Loading from "./Loading";
-import Child from "../Child";
+//import Loading from "./Loading";
+//import Child from "../Child";
 import Parent from "../Parent";
 import Test from "./Test";
+import Functional from "./Functional";
+import { useCallback } from "react";
 function App() {
   // // let text: string = "fkfgkfgm";
 
@@ -288,12 +290,18 @@ function App() {
   // spiderman.addSkills("web shoot");
   // spiderman.changeSkin("goblin.png");
 
+  const handleCalculation = useCallback((a: number, b: number): number => {
+    console.log(a + b);
+    return a + b;
+  }, []);
+
   return (
     <>
       {/* <Child></Child> */}
       <Test></Test>
-      <Parent></Parent>
+      <Parent name="magda"></Parent>
       <Practice></Practice>
+      <Functional isWorking={true} func={handleCalculation}></Functional>
     </>
   );
 }
