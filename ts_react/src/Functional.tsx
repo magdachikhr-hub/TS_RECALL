@@ -1,4 +1,5 @@
 import { memo } from "react";
+import { useCallback } from "react";
 
 interface Property {
   isWorking: Boolean;
@@ -10,7 +11,10 @@ const Functional = memo((props: Property) => {
   const { isWorking, func } = props;
   console.log(isWorking);
   console.log(func);
-  func(12, 13);
+
+  //const memorizedFunction = useCallback(() => {
+  //  func(12, 13);
+  //});
 
   console.log(props);
   return <div>Functional</div>;
