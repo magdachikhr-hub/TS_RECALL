@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { set, useForm, type ErrorMessageProps } from "react-hook-form";
+//import { set, useForm, type ErrorMessageProps } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { supabase } from "./supabase/supabaseClient";
 import { PostgrestError } from "@supabase/supabase-js";
 
@@ -70,6 +71,11 @@ function Practice() {
   async function deletePerson(id: number | undefined) {
     try {
       const { error } = await supabase.from("person").delete().eq("id", id);
+      if (error) {
+        throw new Error(
+          "We couldn't complete that. Please try again in a moment.",
+        );
+      }
     } catch (error) {
       console.log(error);
     }
@@ -92,10 +98,10 @@ function Practice() {
       )}
       <form
         onSubmit={handleSubmit(SubmitFunction)}
-        className="flex flex-col gap-[8px]"
+        className="flex flex-col gap-3 border pt-3 pl-3 pb-3 rounded-3xl"
       >
         <div>
-          <label htmlFor="name">username</label>
+          <label htmlFor="name">username: </label>
           <input
             className="outline rounded"
             type="text"
@@ -104,7 +110,7 @@ function Practice() {
           />
         </div>
         <div>
-          <label htmlFor="score">score:</label>
+          <label htmlFor="score">score: </label>
           <input
             className="outline rounded"
             type="number"
@@ -113,7 +119,7 @@ function Practice() {
         </div>
 
         <button
-          className="w-[70px] h-[30px] border"
+          className="w-17.5 h-7.5 border rounded hover:bg-green-700 hover:text-white"
           disabled={loading}
           type="submit"
         >
@@ -133,9 +139,13 @@ function Practice() {
               gap: "10px",
               width: "120px",
               display: "flex",
+              marginTop: "7px",
+              marginBottom: "10px",
             }}
           >
             <button
+              className="border pl-1 pr-1 h-5 rounded-3xl flex items-end"
+              style={{ order: 1 }}
               onClick={async () => {
                 await deletePerson(person.id);
                 await getPerson();
@@ -144,7 +154,12 @@ function Practice() {
               x
             </button>
             <div>
-              <h3 style={{ marginTop: "5px" }}>{person.username}</h3>
+              <h3
+                style={{ marginTop: "5px", order: 2 }}
+                className="font-semibold"
+              >
+                {person.username}
+              </h3>
               <span>score: {person.score}</span>
             </div>
           </div>

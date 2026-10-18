@@ -1,5 +1,5 @@
 import React from "react";
-import { ThemeContext } from "./src/context/ThemeContext";
+import { ThemeContext } from "./context/ThemeContext";
 import { useContext } from "react";
 
 function PracticeContext({ user2 }) {

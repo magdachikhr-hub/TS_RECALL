@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Child from "./Child";
-import { ThemeContext } from "./src/context/ThemeContext";
+import { ThemeContext } from "./context/ThemeContext";
 //
 import { useDispatch } from "react-redux";
-import { increment } from "./src/redux/counter";
-import { decrement } from "./src/redux/counter";
-import store from "./src/redux/store";
+import { increment } from "./redux/counter";
+import { decrement } from "./redux/counter";
+import store from "./redux/store";
 //
 function Parent({ name }) {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
@@ -27,7 +27,7 @@ function Parent({ name }) {
     age: "100",
   };
 
-  console.log(store.getState());
+  //console.log(store.getState());
 
   return (
     <>

@@ -12,8 +12,8 @@ function Test() {
   store.dispatch(increment());
   store.dispatch(decrement());
 
-  console.log(store.getState());
-  return <div>Test</div>;
+  //console.log(store.getState());
+  return <></>;
 }
 
 export default Test;

@@ -2,7 +2,7 @@ import "./App.css";
 import Practice from "./Practice";
 //import Loading from "./Loading";
 //import Child from "../Child";
-import Parent from "../Parent";
+import Parent from "./Parent";
 import Test from "./Test";
 import Functional from "./Functional";
 import { useCallback } from "react";
