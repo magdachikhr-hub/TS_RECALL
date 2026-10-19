@@ -1,7 +1,30 @@
-import React from "react";
+import { useEffect, useState } from "react";
 
 function Child({ props }) {
+  const [counter, setCounter] = useState(0);
+
   const books = props;
+  //3.2
+
+  useEffect(() => {
+    console.log("page loaded");
+  }, []);
+
+  //another we can get
+  useEffect(() => {
+    async function getBookReviews() {
+      try {
+        const response = await fetch("https://potterapi-fedeperin.vercel.app/");
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getBookReviews();
+  }, []);
+
+  ///
 
   console.log(books);
   //2.2
@@ -17,8 +40,12 @@ function Child({ props }) {
           </div>
         ))
       )}
+      <h3>{counter}</h3>
+      <button onClick={() => setCounter((prev) => prev + 1)}>add</button>
+      <button onClick={() => setCounter(0)}>reset</button>
+      <button onClick={() => setCounter((prev) => prev - 1)}>decrease</button>
     </>
   );
 }
-
+//3.1 buttons
 export default Child;
