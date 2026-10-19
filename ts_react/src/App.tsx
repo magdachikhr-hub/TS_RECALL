@@ -5,7 +5,7 @@ import Practice from "./Practice";
 import Parent from "./Parent";
 import Test from "./Test";
 import Functional from "./Functional";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 function App() {
   // // let text: string = "fkfgkfgm";
 
@@ -311,6 +311,14 @@ function App() {
 
   handleSearch();
   console.log(searchValue);
+
+  const sum = useCallback(() => {
+    console.log("123");
+  }, []);
+
+  useEffect(() => {
+    sum();
+  }, [sum]);
 
   return (
     <>
