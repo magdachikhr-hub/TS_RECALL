@@ -9,6 +9,7 @@ function Child({ user }: any) {
     { name: "natia", age: 24, grade: 2920 },
     { name: "lado", age: 25, grade: 90 },
   ]);
+
   // console.log(user);
   // const [students, setStudents] = useState([]);
   //setuser is not used??

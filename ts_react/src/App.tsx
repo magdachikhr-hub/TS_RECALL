@@ -5,7 +5,7 @@ import Practice from "./Practice";
 import Parent from "./Parent";
 import Test from "./Test";
 import Functional from "./Functional";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 function App() {
   // // let text: string = "fkfgkfgm";
 
@@ -289,19 +289,50 @@ function App() {
   // spiderman.addScore();
   // spiderman.addSkills("web shoot");
   // spiderman.changeSkin("goblin.png");
+  const [products, setProducts] = useState([
+    { id: 1, name: "lenovo" },
+    { id: 2, name: "apple" },
+    { id: 3, name: "dell" },
+  ]);
+
+  const [count, setCount] = useState(0);
+  const [searchValue, setSearchValue] = useState("");
 
   const handleCalculation = useCallback((a: number, b: number): number => {
     console.log(a + b);
     return a + b;
   }, []);
 
+  const handleSearch = useCallback(() => {
+    const found = products.find((p) => p.name.includes(searchValue));
+    console.log(found);
+    return found;
+  }, [products, searchValue]);
+
+  handleSearch();
+  console.log(searchValue);
+
   return (
     <>
+      <button onClick={() => setCount(count + 1)}>clicked {count} times</button>
       {/* <Child></Child> */}
       <Test></Test>
       <Parent name="magda"></Parent>
       <Practice></Practice>
-      <Functional isWorking={true} func={handleCalculation}></Functional>
+      <Functional
+        isWorking={true}
+        func={handleCalculation}
+        func2={handleSearch}
+      ></Functional>
+
+      <input
+        type="search"
+        className="border"
+        onChange={(e) => {
+          handleSearch();
+          setSearchValue(e.target.value);
+        }}
+      />
     </>
   );
 }
