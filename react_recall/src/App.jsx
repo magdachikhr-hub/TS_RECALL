@@ -7,6 +7,7 @@ import { ThemeContext } from "./context/themeContext";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
 import Contact from "./pages/Contact";
+import Product from "./pages/Product";
 function App() {
   let theme = "dark";
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="/products" element={<Products></Products>}></Route>
         <Route path="/contacts" element={<Contact></Contact>}></Route>
+        <Route path="/product/:id" element={<Product></Product>}></Route>
       </Routes>
       <Footer></Footer>
     </>
