@@ -8,6 +8,8 @@ import Home from "./pages/Home";
 import Products from "./pages/Products";
 import Contact from "./pages/Contact";
 import Product from "./pages/Product";
+import Slice from "./components/Slice";
+
 function App() {
   let theme = "dark";
   return (
@@ -23,6 +25,9 @@ function App() {
         <Route path="/contacts" element={<Contact></Contact>}></Route>
         <Route path="/product/:id" element={<Product></Product>}></Route>
       </Routes>
+      <div style={{ border: "1px solid black" }}>
+        <Slice />
+      </div>
       <Footer></Footer>
     </>
   );
