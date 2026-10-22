@@ -1,14 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-function Products() {
-  const arr = [
-    { id: 1, name: "laptop" },
-    { id: 2, name: "PC" },
-  ];
 
+export const Arr = [
+  { id: 1, name: "laptop" },
+  { id: 2, name: "PC" },
+];
+
+function Products() {
   return (
     <>
-      {arr.map((p) => (
+      {Arr.map((p) => (
         <Link to={`/product/${p.id}`} key={p.id}>
           <div>{p.name}</div>
         </Link>
