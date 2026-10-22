@@ -6,11 +6,11 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store.js";
 //5.2 provider
 createRoot(document.getElementById("root")).render(
-  <BrowserRouter>
-    <StrictMode>
-      <Provider store={store}>
+  <Provider store={store}>
+    <BrowserRouter>
+      <StrictMode>
         <App />
-      </Provider>
-    </StrictMode>
-  </BrowserRouter>,
+      </StrictMode>
+    </BrowserRouter>
+  </Provider>,
 );
